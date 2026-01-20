@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="RcTireManager.Data/RcTireManager.Data.csproj" />
+  <Project Path="RcTireManager.Interfaces/RcTireManager.Interfaces.csproj" />
+  <Project Path="RcTireManager.Logic/RcTireManager.Logic.csproj" />
+  <Project Path="RcTireManager.Viewmodels/RcTireManager.Viewmodels.csproj" />
+  <Project Path="RcTireManager/RcTireManager.csproj" />
+</Solution>
