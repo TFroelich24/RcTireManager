@@ -1,0 +1,34 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    },
+    "profileContent": {
+      "properties": {
+        "commandName": {
+          "type": "string",
+          "description": "Identifies the debug target to run.",
+          "enum": [
+            "Executable",
+            "Project",
+            "IIS",
+            "IISExpress",
+            "DebugRoslynComponent",
+            "Docker",
+            "DockerCompose",
+            "MsixPackage",
+            "SdkContainer",
+            "WSL2"
+          ],
+          "default": "",
+          "minLength": 1
+        },
+        "nativeDebugging": {
+          "type": "boolean",
+          "description": "Set to true to enable native code debugging.",
+          "default": false
+        }
+      }
+    }
+  }
