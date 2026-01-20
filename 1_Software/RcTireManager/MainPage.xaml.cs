@@ -1,6 +1,4 @@
-﻿using RcTireManager.Viewmodels;
-
-namespace RcTireManager
+﻿namespace RcTireManager
 {
     public partial class MainPage : ContentPage
     {

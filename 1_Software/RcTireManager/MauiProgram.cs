@@ -22,16 +22,16 @@ namespace RcTireManager
             builder.Services.AddMudServices();
             builder.Services.AddSingleton<IViewModelHome, ViewModelHome>();
             builder.Services.AddSingleton<ILogicHome, LogicHome>();
-            
+
 #if DEBUG
-            builder.Services.AddBlazorWebViewDeveloperTools();            
+            builder.Services.AddBlazorWebViewDeveloperTools();
             builder.Logging.AddDebug();
-#endif            
-           
+#endif
+
             MauiApp app = builder.Build();
             SetReferenceToLogics(app);
             return app;
-        }  
+        }
 
         static void SetReferenceToLogics(MauiApp app)
         {
