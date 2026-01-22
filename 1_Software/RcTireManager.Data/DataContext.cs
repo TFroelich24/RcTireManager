@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RcTireManager.Data
 {
-    public class DataContext : DataBase
+    public class DataContext
     {
         public DataContext()
         {
@@ -35,23 +35,32 @@ namespace RcTireManager.Data
 
         }
 
-        //private BaseTable<CarDTO>? _carsTable;
-        //private BaseTable<TireSetDTO>? _tireSetsTable;
+        private BaseTable<CarDTO>? _carsTable = new("Car");
+        private BaseTable<TireSetDTO>? _tireSetsTable = new("TireSet");
 
         private ObservableCollection<CarDTO>? cars;
         public ObservableCollection<CarDTO>? Cars
         {
-            get => cars;
+            get
+            {
+                if (_carsTable != null)
+                    return _carsTable.GetAll();
+                else
+                    return null;
+            }
+
             set
             {
                 if (cars != value)
                 {
                     cars = value;
-                    if (cars != null)
+                    if (cars != null && _carsTable != null)
                     {
-                        var table = base.GetTable<CarDTO>(nameof(Cars));
+                        ObservableCollection<CarDTO>? _allCars = _carsTable.GetAll();
                         foreach (var car in cars)
-                            table.AddIfNotExists(car);
+                        {
+                            _carsTable.AddIfNotExistsOrUpdate(car);
+                        }
                     }
                 }
             }
@@ -60,22 +69,27 @@ namespace RcTireManager.Data
         private ObservableCollection<TireSetDTO>? tireSets;
         public ObservableCollection<TireSetDTO>? TireSets
         {
-            get => tireSets;
+            get
+            {
+                if (_tireSetsTable != null)
+                    return _tireSetsTable.GetAll();
+                else
+                    return null;
+            }
+
             set
             {
                 if (tireSets != value)
                 {
                     tireSets = value;
-                    if (tireSets != null)
+                    if (tireSets != null && _tireSetsTable != null)
                     {
-                        var table = base.GetTable<TireSetDTO>(nameof(TireSets));
+                        ObservableCollection<TireSetDTO> allTires = _tireSetsTable.GetAll();
                         foreach (var tireSet in tireSets)
-                            table.AddIfNotExists(tireSet);
+                            _tireSetsTable.AddIfNotExistsOrUpdate(tireSet);
                     }
                 }
             }
         }
-
-
     }
 }

@@ -4,7 +4,6 @@ using RcTireManager.Interfaces.Logic;
 using RcTireManager.Interfaces.Viewmodels;
 using System.Collections.ObjectModel;
 
-
 namespace RcTireManager.Viewmodels
 {
     public class ViewModelHome : PageModel, IViewModelHome
@@ -30,6 +29,12 @@ namespace RcTireManager.Viewmodels
         public void SetReferenceToBusinessLogic(ILogicBase logic)
         {
             _logic = (ILogicHome)logic;
-        }   
+        }
+
+        public void SaveRun()
+        {
+            if (_logic != null)
+                _logic.SaveRun();            
+        }
     }
 }

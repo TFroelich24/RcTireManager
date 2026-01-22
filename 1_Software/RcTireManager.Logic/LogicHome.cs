@@ -1,5 +1,7 @@
 ﻿using RcTireManager.Data;
+using RcTireManager.Data.DTO;
 using RcTireManager.Interfaces.Viewmodels;
+using System.Collections.ObjectModel;
 
 namespace RcTireManager.Interfaces.Logic
 {
@@ -11,7 +13,6 @@ namespace RcTireManager.Interfaces.Logic
         {
             _dataContext = new DataContext();
             _viewmodel = viewmodel;
-
             loadAllDataFromDataContext();
         }
 
@@ -57,13 +58,27 @@ namespace RcTireManager.Interfaces.Logic
 
         private void setDefaultValuesIfDataIsNotEmpty()
         {
-            _viewmodel.SelectedTireSet = _dataContext.TireSets?.FirstOrDefault();
-            _viewmodel.SelectedCar = _dataContext.Cars?.FirstOrDefault();
+            _viewmodel.SelectedTireSet = null;
+            _viewmodel.SelectedCar = null;
         }
-
         public void SaveRun()
         {
-            throw new NotImplementedException();
+            if (_viewmodel.SelectedTireSet != null && _viewmodel.RunTime != null && _viewmodel.SelectedCar != null && _dataContext != null)
+            {
+                _viewmodel.SelectedTireSet.RunTime += (TimeSpan)_viewmodel.RunTime;
+                TireSetDTO? tire = _dataContext.TireSets?.Where(t => t.ID == _viewmodel.SelectedTireSet.ID).First();
+                ObservableCollection<TireSetDTO>? sets = new();
+                sets = _dataContext.TireSets;
+                
+                if (tire != null)
+                    sets?.Remove(tire);
+                sets?.Add(_viewmodel.SelectedTireSet);
+                _dataContext.TireSets = sets;
+            }
+            else
+            {
+                //TODO show ärror
+            }
         }
     }
 }

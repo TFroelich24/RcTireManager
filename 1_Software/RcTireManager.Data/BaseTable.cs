@@ -44,11 +44,17 @@ namespace RcTireManager.Data
             writeToDataFile(data);
         }
 
-        public void AddIfNotExists(T item)
+        public void AddIfNotExistsOrUpdate(T item)
         {
             ObservableCollection<T> data = readFromDataFile() ?? new ObservableCollection<T>();
             if (!data.Contains(item))
                 data.Add(item);
+            else
+            {
+                for (int i = 0; i < data.Count; i++)
+                    if (data !=null&& data[i].Equals(item))
+                        data[i] = item;
+            }
 
             writeToDataFile(data);
         }

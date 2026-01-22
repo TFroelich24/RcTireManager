@@ -10,14 +10,6 @@ namespace RcTireManager.Components.Pages
     {
         public Home()
         {
-            //_viewModelHome;
-        }
-
-
-
-        private void SaveRun()
-        {
-            int number = 0;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace RcTireManager.Interfaces.Viewmodels
         public TireSetDTO? SelectedTireSet { get; set; }
         public ObservableCollection<TireSetDTO> TireSets { get; set; }
         public TimeSpan? RunTime { get; set; }
+        void SaveRun();
 
     }
 }

@@ -43,7 +43,7 @@
                 <MudBlazor.MudTimePicker Label="Choose run time" TimeEditMode="TimeEditMode.OnlyMinutes" PickerVariant="PickerVariant.Dialog" @bind-Time="_viewModelHome.RunTime" />
             </div>
             <div style="grid-row: 5">
-                <MudBlazor.MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Save" onclick="SaveRun">Save Run</MudBlazor.MudButton>
+                <MudBlazor.MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Save" @onclick="_viewModelHome.SaveRun">Save Run</MudBlazor.MudButton>
             </div>
         </div>
     </MudPaper>
