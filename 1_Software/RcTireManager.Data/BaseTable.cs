@@ -41,7 +41,23 @@ namespace RcTireManager.Data
         {
             ObservableCollection<T> data = readFromDataFile() ?? new ObservableCollection<T>();
             data.Add(item);
+            File.Delete(_nameAndPath);
             writeToDataFile(data);
+        }
+
+        public void UpdateTable(ObservableCollection<T>? data)
+        {
+            File.Delete(_nameAndPath);
+            string stream = JsonSerializer.Serialize(data);
+
+            if (data != null)
+            {
+                File.Create(_nameAndPath).Close();
+                _file = File.Open(_nameAndPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                _file.Position = 0;
+                _file.Write(Encoding.ASCII.GetBytes(stream));
+                _file.Close();
+            }
         }
 
         public void AddIfNotExistsOrUpdate(T item)
@@ -52,7 +68,7 @@ namespace RcTireManager.Data
             else
             {
                 for (int i = 0; i < data.Count; i++)
-                    if (data !=null&& data[i].Equals(item))
+                    if (data != null && data[i].Equals(item))
                         data[i] = item;
             }
 

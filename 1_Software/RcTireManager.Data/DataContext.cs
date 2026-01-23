@@ -52,16 +52,8 @@ namespace RcTireManager.Data
             set
             {
                 if (cars != value)
-                {
-                    cars = value;
-                    if (cars != null)
-                    {
-                        foreach (var car in cars)
-                        {
-                            _carsTable?.AddIfNotExistsOrUpdate(car);
-                        }
-                    }
-                }
+                    _carsTable?.UpdateTable(value);
+
             }
         }
 
@@ -79,14 +71,8 @@ namespace RcTireManager.Data
             set
             {
                 if (tireSets != value)
-                {
-                    tireSets = value;
-                    if (tireSets != null)
-                    {
-                        foreach (var tireSet in tireSets)
-                            _tireSetsTable?.AddIfNotExistsOrUpdate(tireSet);
-                    }
-                }
+                    _tireSetsTable?.UpdateTable(value);
+
             }
         }
     }
