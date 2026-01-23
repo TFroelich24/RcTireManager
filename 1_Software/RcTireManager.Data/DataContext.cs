@@ -54,12 +54,11 @@ namespace RcTireManager.Data
                 if (cars != value)
                 {
                     cars = value;
-                    if (cars != null && _carsTable != null)
+                    if (cars != null)
                     {
-                        ObservableCollection<CarDTO>? _allCars = _carsTable.GetAll();
                         foreach (var car in cars)
                         {
-                            _carsTable.AddIfNotExistsOrUpdate(car);
+                            _carsTable?.AddIfNotExistsOrUpdate(car);
                         }
                     }
                 }
@@ -82,11 +81,10 @@ namespace RcTireManager.Data
                 if (tireSets != value)
                 {
                     tireSets = value;
-                    if (tireSets != null && _tireSetsTable != null)
+                    if (tireSets != null)
                     {
-                        ObservableCollection<TireSetDTO> allTires = _tireSetsTable.GetAll();
                         foreach (var tireSet in tireSets)
-                            _tireSetsTable.AddIfNotExistsOrUpdate(tireSet);
+                            _tireSetsTable?.AddIfNotExistsOrUpdate(tireSet);
                     }
                 }
             }

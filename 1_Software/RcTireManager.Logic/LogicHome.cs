@@ -2,6 +2,7 @@
 using RcTireManager.Data.DTO;
 using RcTireManager.Interfaces.Viewmodels;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace RcTireManager.Interfaces.Logic
 {
@@ -66,13 +67,15 @@ namespace RcTireManager.Interfaces.Logic
             if (_viewmodel.SelectedTireSet != null && _viewmodel.RunTime != null && _viewmodel.SelectedCar != null && _dataContext != null)
             {
                 _viewmodel.SelectedTireSet.RunTime += (TimeSpan)_viewmodel.RunTime;
-                TireSetDTO? tire = _dataContext.TireSets?.Where(t => t.ID == _viewmodel.SelectedTireSet.ID).First();
                 ObservableCollection<TireSetDTO>? sets = new();
+                sets = new ObservableCollection<TireSetDTO>();
                 sets = _dataContext.TireSets;
-                
-                if (tire != null)
-                    sets?.Remove(tire);
+                if (sets != null)
+                    sets.RemoveAt(_viewmodel.TireSets.IndexOf(_viewmodel.SelectedTireSet));
+
                 sets?.Add(_viewmodel.SelectedTireSet);
+                sets?.OrderBy(s => s.ID);
+                _dataContext?.TireSets?.Clear();
                 _dataContext.TireSets = sets;
             }
             else
