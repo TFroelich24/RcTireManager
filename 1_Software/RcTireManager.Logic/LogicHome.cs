@@ -73,7 +73,9 @@ namespace RcTireManager.Interfaces.Logic
                 if (sets != null)
                     sets.RemoveAt(_viewmodel.TireSets.IndexOf(_viewmodel.SelectedTireSet));
 
-                sets?.Add(_viewmodel.SelectedTireSet);                
+                sets?.Add(_viewmodel.SelectedTireSet);
+                sets?.OrderBy(s => s.ID);
+                _dataContext?.TireSets?.Clear();
                 _dataContext.TireSets = sets;
             }
             else

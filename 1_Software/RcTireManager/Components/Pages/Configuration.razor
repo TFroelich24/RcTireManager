@@ -1,27 +1,34 @@
-﻿@page "/"
-@using System.Globalization;
-@using Microsoft.AspNetCore.Components
-@using MudBlazor
-@using RcTireManager.Components.Pages
-@using RcTireManager.Data.DTO
-@using RcTireManager.Interfaces.Viewmodels
-@using RcTireManager.Viewmodels
-@inherits LayoutComponentBase
-@inject IViewModelHome _viewModelHome
+﻿@page "/Configuration"
 
-<MudLayout>
-    <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.Medium">
-            @Body
-        </MudContainer>
-    </MudMainContent>
-</MudLayout>
+<h1>Weather</h1>
 
-<MudPaper style="display: grid; grid-template-columns: fr fr fr;">
-    <MudPaper Class="pa-16 ma-2" Elevation="0" Style="grid-column: 2">
-        <div style="display: grid; grid-template-rows: 8vh 8vh 8vh 8vh 8vh 8vh; gap: 2vh">
-            <div style="grid-row: 1">
-            </div>
-        </div>
-    </MudPaper>
-</MudPaper>
+<p>This component demonstrates showing data.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
