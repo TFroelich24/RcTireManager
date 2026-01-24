@@ -2,12 +2,8 @@
 using RcTireManager.Data.Interfaces;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Text.Json;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace RcTireManager.Data
 {
@@ -15,106 +11,71 @@ namespace RcTireManager.Data
     {
         const string DATA_FOLDER = "Data";
 
-        ObservableCollection<T>? _data;
-        string _name;
-        string _nameAndPath;
-        FileStream _file;
+        private ObservableCollection<T>? _data;
+        private readonly string _name;
+        private readonly string _nameAndPath;
 
         public BaseTable(string Name)
         {
-            _name = $"{Name}" + ".json";
-            _nameAndPath = Path.Combine("Data\\", _name);
-            readFromDataFile();
+            _name = $"{Name}.json";
+            _nameAndPath = Path.Combine(DATA_FOLDER, _name);
+            _data = ReadFromDataFile();
         }
 
         public ObservableCollection<T> GetAll()
         {
-            return readFromDataFile();
+            return _data ??= new ObservableCollection<T>();
         }
 
-        public T? GetById()
-        {
-            return default;
-        }
-
-        public void Add(T item)
-        {
-            ObservableCollection<T> data = readFromDataFile() ?? new ObservableCollection<T>();
-            data.Add(item);
-            File.Delete(_nameAndPath);
-            writeToDataFile(data);
-        }
+     
 
         public void UpdateTable(ObservableCollection<T>? data)
         {
-            File.Delete(_nameAndPath);
-            string stream = JsonSerializer.Serialize(data);
+            _data = data ?? new ObservableCollection<T>();
+            WriteToDataFile(_data);
+        }
 
-            if (data != null)
+      
+
+        private void WriteToDataFile(ObservableCollection<T> data)
+        {
+            try
             {
-                File.Create(_nameAndPath).Close();
-                _file = File.Open(_nameAndPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                _file.Position = 0;
-                _file.Write(Encoding.ASCII.GetBytes(stream));
-                _file.Close();
+                if (!Directory.Exists(DATA_FOLDER))
+                    Directory.CreateDirectory(DATA_FOLDER);
+
+                string stream = JsonSerializer.Serialize(data);
+                File.WriteAllText(_nameAndPath, stream, Encoding.UTF8);
+            }
+            catch
+            {
+                // Logging / Fehlerbehandlung ggf. ergänzen
             }
         }
 
-        public void AddIfNotExistsOrUpdate(T item)
+        private ObservableCollection<T> ReadFromDataFile()
         {
-            ObservableCollection<T> data = readFromDataFile() ?? new ObservableCollection<T>();
-            if (!data.Contains(item))
-                data.Add(item);
-            else
+            try
             {
-                for (int i = 0; i < data.Count; i++)
-                    if (data != null && data[i].Equals(item))
-                        data[i] = item;
+                if (!Directory.Exists(DATA_FOLDER))
+                    Directory.CreateDirectory(DATA_FOLDER);
+
+                if (!File.Exists(_nameAndPath))
+                {
+                    File.WriteAllText(_nameAndPath, string.Empty, Encoding.UTF8);
+                    return new ObservableCollection<T>();
+                }
+
+                string content = File.ReadAllText(_nameAndPath, Encoding.UTF8);
+                if (string.IsNullOrWhiteSpace(content))
+                    return new ObservableCollection<T>();
+
+                var deserialized = JsonSerializer.Deserialize<ObservableCollection<T>>(content);
+                return deserialized ?? new ObservableCollection<T>();
             }
-
-            writeToDataFile(data);
-        }
-
-
-        private void writeToDataFile(ObservableCollection<T> data)
-        {
-            string stream = JsonSerializer.Serialize(data);
-            createOrOpenDataFile();
-            _file.Position = 0;
-            _file.Write(Encoding.ASCII.GetBytes(stream));
-            _file.Close();
-        }
-
-
-        private ObservableCollection<T> readFromDataFile()
-        {
-            createOrOpenDataFile();
-
-            if (_file == null)
+            catch
+            {
                 return new ObservableCollection<T>();
-
-            else if (_file.Length == 0)
-            {
-                _file.Close();
-                return new ObservableCollection<T>();
-            }
-            else
-            {
-                _data = (ObservableCollection<T>)JsonSerializer.Deserialize<ObservableCollection<T>>(_file);
-                _file.Close();
-                return _data;
-            }
-        }
-
-        private void createOrOpenDataFile()
-        {
-            if (!Directory.Exists("Data"))
-                Directory.CreateDirectory("Data");
-            if (!File.Exists(_nameAndPath))
-                File.Create(_nameAndPath).Close();
-            else
-            {
-                _file = File.Open(_nameAndPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             }
         }
     }

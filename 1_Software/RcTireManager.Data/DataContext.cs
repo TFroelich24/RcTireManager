@@ -35,8 +35,8 @@ namespace RcTireManager.Data
 
         }
 
-        private BaseTable<CarDTO>? _carsTable = new("Car");
-        private BaseTable<TireSetDTO>? _tireSetsTable = new("TireSet");
+        private BaseTable<CarDTO>? _carsTable = new(nameof(cars));
+        private BaseTable<TireSetDTO>? _tireSetsTable = new(nameof(tireSets));
 
         private ObservableCollection<CarDTO>? cars;
         public ObservableCollection<CarDTO>? Cars
