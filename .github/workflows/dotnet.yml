@@ -22,10 +22,10 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.0.x
-    - name: Restore dependencies (using PROJECT_PATH)
-      run: dotnet restore  (using PROJECT_PATH)
-    - name: Build  (using PROJECT_PATH)
-      run: dotnet build --no-restore  (using PROJECT_PATH)
+    - name: Restore dependencies using PROJECT_PATH
+      run: dotnet restore  using PROJECT_PATH
+    - name: Build  using PROJECT_PATH
+      run: dotnet build --no-restore  using PROJECT_PATH
     - name: Test  (using PROJECT_PATH)
       run: dotnet test --no-build --verbosity normal  (using PROJECT_PATH)
 
