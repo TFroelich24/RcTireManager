@@ -20,7 +20,8 @@
         <div style="display: grid; grid-template-rows: 8vh 8vh 8vh 8vh 8vh 8vh; gap: 2vh">
             <div style="grid-row: 1">
                 <MudSelect T="CarDTO" @bind-value="_viewModelHome.SelectedCar"
-                           Label="Select Car">
+                           Label="Select car"
+                           Clearable="true">
                     @foreach (CarDTO car in _viewModelHome.Cars)
                     {
                         <MudSelectItem Value="car">@car.Name</MudSelectItem>
@@ -29,21 +30,33 @@
             </div>
             <div style="grid-row: 2">
                 <MudSelect T="TireSetDTO" @bind-value="_viewModelHome.SelectedTireSet"
-                           Label="Select Tire">
+                           Label="Select tire"
+                           Disabled="_viewModelHome.SelectedCar==null"
+                           Clearable="true">
                     @foreach (TireSetDTO set in _viewModelHome.TireSets)
-                    {
-                        <MudSelectItem Value="set">@set.Name</MudSelectItem>
-                    }
+                        if (_viewModelHome.SelectedCar != null)
+                            foreach (int setID in _viewModelHome.SelectedCar.TireSetsIDs)
+                                if (set.ID == setID)
+                                {
+                                    <MudSelectItem Value="set">@set.ID - @set.Name - @set.Compound</MudSelectItem>
+                                }
+
                 </MudSelect>
             </div>
             <div style="grid-row: 3">
-                <MudText><b>Previous runtime:</b> @_viewModelHome.SelectedTireSet?.RunTime</MudText>
+                <MudText><b>Tire runtime:</b> @_viewModelHome.SelectedTireSet?.RunTime</MudText>
             </div>
             <div style="grid-row: 4">
-                <MudBlazor.MudTimePicker Label="Choose run time" TimeEditMode="TimeEditMode.OnlyMinutes" PickerVariant="PickerVariant.Dialog" @bind-Time="_viewModelHome.RunTime" />
+                <MudBlazor.MudTimePicker Label="Choose run time" 
+                TimeEditMode="TimeEditMode.OnlyMinutes" 
+                PickerVariant="PickerVariant.Dialog" @bind-Time="_viewModelHome.RunTime" 
+                Clearable="true"/>
             </div>
             <div style="grid-row: 5">
-                <MudBlazor.MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Save" @onclick="_viewModelHome.SaveRun">Save Run</MudBlazor.MudButton>
+                <MudBlazor.MudButton FullWidth="true"
+                                     Variant="Variant.Filled" Color="Color.Info"
+                                     Disabled="@(_viewModelHome.SelectedCar==null || _viewModelHome.SelectedTireSet==null || _viewModelHome.RunTime==TimeSpan.Zero || _viewModelHome.RunTime==null)"
+                                     StartIcon="@Icons.Material.Filled.Save" @onclick="_viewModelHome.SaveRun">Save Run</MudBlazor.MudButton>
             </div>
         </div>
     </MudPaper>
