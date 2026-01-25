@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
+using RcTireManager.Interfaces;
 using RcTireManager.Interfaces.Logic;
 using RcTireManager.Interfaces.Viewmodels;
+using RcTireManager.Logic;
 using RcTireManager.Viewmodels;
 
 namespace RcTireManager
@@ -22,7 +24,8 @@ namespace RcTireManager
             builder.Services.AddMudServices();
             builder.Services.AddSingleton<IViewModelHome, ViewModelHome>();
             builder.Services.AddSingleton<ILogicHome, LogicHome>();
-
+            builder.Services.AddSingleton<IViewModelConfiguration, ViewModelConfiguration>();
+            builder.Services.AddSingleton<ILogicConfiguration, LogicConfiguration>();
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
             builder.Logging.AddDebug();
@@ -36,6 +39,7 @@ namespace RcTireManager
         static void SetReferenceToLogics(MauiApp app)
         {
             app.Services.GetRequiredService<IViewModelHome>().SetReferenceToBusinessLogic(app.Services.GetRequiredService<ILogicHome>());
+            app.Services.GetRequiredService<IViewModelConfiguration>().SetReferenceToBusinessLogic(app.Services.GetRequiredService<ILogicConfiguration>());
         }
     }
 }

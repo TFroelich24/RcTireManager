@@ -1,11 +1,4 @@
-﻿using RcTireManager.Interfaces.Viewmodels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RcTireManager.Interfaces
+﻿namespace RcTireManager.Interfaces.Viewmodels
 {
     public interface IViewModelConfiguration :IViewModelTireManager
     {

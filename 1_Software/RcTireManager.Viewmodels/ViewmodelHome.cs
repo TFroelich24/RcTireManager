@@ -9,7 +9,6 @@ namespace RcTireManager.Viewmodels
     public class ViewModelHome : PageModel, IViewModelHome
     {
         ILogicHome? _logic;
-
         public ObservableCollection<CarDTO> Cars { get; set; }
         public CarDTO? SelectedCar { get; set; }
         public TireSetDTO? SelectedTireSet { get; set; }
