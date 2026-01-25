@@ -19,9 +19,11 @@ namespace RcTireManager.Viewmodels
         public CarDTO? SelectedCar { get; set; }
         public TireSetDTO? SelectedTireSet { get; set; }
         public ObservableCollection<TireSetDTO> TireSets { get; set; }
+        public string SelectedConfiguration { get; set; }
 
         public ViewModelConfiguration()
         {
+            SelectedConfiguration = string.Empty;
             Cars = new();
             TireSets = new();
             SelectedCar = new();

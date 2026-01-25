@@ -15,11 +15,33 @@
     </MudMainContent>
 </MudLayout>
 
+
+<div style="display: grid; grid-template-columns: 1vh 98vh 1vh;">
+    <MudPaper Class="pa-16 ma-2" Elevation="0" Style="grid-column: 2">
+        <div style="display: grid; grid-template-rows: 8vh 8vh 8vh 8vh 8vh 8vh; gap: 2vh">
+            <div style="grid-row: 1">
+                <MudToggleGroup T="string" SelectedClass="@_viewModelConfiguration.SelectedConfiguration" @bind-Value="_viewModelConfiguration.SelectedConfiguration"
+                                SelectionMode="SelectionMode.ToggleSelection" Color="Color.Tertiary" CheckMark="true">
+                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedCar))" Text="Cp griars"/>
+                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedTireSet))" Text="Tire sets"/>
+                </MudToggleGroup>
+            </div>
+            <div style="grid-row: 2">
+                <MudStack Row="false">
+                    @*  @foreach (var item in collection)
+        {
+
+        } *@
+                    <MudPaper Class="pa-3">Item 1</MudPaper>
+                    <MudPaper Class="pa-3">Item 2</MudPaper>
+                    <MudPaper Class="pa-3">Item 3</MudPaper>
+                </MudStack>
+            </div>
+        </div>
+    </MudPaper>
+</div>
+
+
 <MudGrid>
-    <MudStack Row ="false">
-        
-        <MudPaper Class="pa-3">Item 1</MudPaper>
-        <MudPaper Class="pa-3">Item 2</MudPaper>
-        <MudPaper Class="pa-3">Item 3</MudPaper>
-    </MudStack>
+
 </MudGrid>
