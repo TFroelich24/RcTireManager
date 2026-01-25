@@ -1,15 +1,37 @@
-﻿using RcTireManager.Data.DTO;
+﻿using RcTireManager.Data;
+using RcTireManager.Data.DTO;
 using RcTireManager.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RcTireManager.Interfaces.Viewmodels;
 
 namespace RcTireManager.Logic
 {
     public class LogicConfiguration : ILogicConfiguration
     {
+        private DataContext _dataContext;
+        private IViewModelConfiguration _viewmodel;
+
+        public LogicConfiguration(IViewModelConfiguration viewmodel)
+        {
+            _dataContext = new DataContext();
+            _viewmodel = viewmodel;
+            loadAllDataFromDataContext();
+        }
+
+        private void loadAllDataFromDataContext()
+        {
+            if (_dataContext.Cars != null)
+                _viewmodel.Cars = _dataContext.Cars;
+            if (_dataContext.TireSets != null)
+                _viewmodel.TireSets = _dataContext.TireSets;
+
+            setDefaultValuesIfDataIsNotEmpty();
+        }
+
+        private void setDefaultValuesIfDataIsNotEmpty()
+        {
+            _viewmodel.SelectedTireSet = null;
+            _viewmodel.SelectedCar = null;
+        }
         public void Add(BaseDTO item)
         {
             throw new NotImplementedException();

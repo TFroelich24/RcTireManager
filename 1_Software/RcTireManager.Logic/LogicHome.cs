@@ -16,37 +16,7 @@ namespace RcTireManager.Interfaces.Logic
             _viewmodel = viewmodel;
             loadAllDataFromDataContext();
         }
-
-        public void AddCar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddTireSet()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteCar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteTireSet()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Initialize()
-        {
-            loadAllDataFromDataContext();
-        }
-
-        public void RefreshData()
-        {
-            loadAllDataFromDataContext();
-        }
-
+        
         private void loadAllDataFromDataContext()
         {
             if (_dataContext.Cars != null)
@@ -62,6 +32,7 @@ namespace RcTireManager.Interfaces.Logic
             _viewmodel.SelectedTireSet = null;
             _viewmodel.SelectedCar = null;
         }
+
         public void SaveRun()
         {
             if (_viewmodel.SelectedTireSet != null && _viewmodel.RunTime != null && _viewmodel.SelectedCar != null && _dataContext != null)
