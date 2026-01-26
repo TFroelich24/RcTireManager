@@ -13,7 +13,7 @@ on:
       project-path:
         description: 'Solution (.sln) or project path relative to repository root'
         required: false
-        default: '1_Software/RcTireManager.sln'
+        default: '1_Software/RcTireManager.slnx'
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_PATH: '1_Software/RcTireManager.sln'
+      PROJECT_PATH: '1_Software/RcTireManager.slnx'
 
     steps:
     - uses: actions/checkout@v4
