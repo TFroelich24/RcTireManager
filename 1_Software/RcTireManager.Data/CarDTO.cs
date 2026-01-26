@@ -6,22 +6,13 @@ using System.Collections.ObjectModel;
 namespace RcTireManager.Data.DTO
 {
 
-    public class CarDTO : BaseDTO
+    public class CarDTO : BaseItemDTO
     {
         public CarDTO()
         {
-            name = string.Empty;
             tireSetsIDs = new ObservableCollection<int>();            
         }
-
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-
+        
         private ObservableCollection<int> tireSetsIDs;
 
         public ObservableCollection<int> TireSetsIDs

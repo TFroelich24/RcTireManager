@@ -4,25 +4,15 @@ namespace RcTireManager.Data.DTO
 {
 
 
-    public class TireSetDTO : BaseDTO
+    public class TireSetDTO : BaseItemDTO
     {
         public TireSetDTO()
         {
-            name = string.Empty;
             type = string.Empty;
             compound = string.Empty;
-            runTime = new TimeSpan();
         }
 
-        private string name;
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-
+      
         private string type;
         public string Type
         {
@@ -36,15 +26,6 @@ namespace RcTireManager.Data.DTO
         {
             get { return compound; }
             set { compound = value; }
-        }
-
-
-        private TimeSpan runTime;
-        public TimeSpan RunTime
-        {
-            get { return runTime; }
-            set { runTime = value; }
-        }
-
+        }       
     }
 }

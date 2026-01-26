@@ -13,5 +13,6 @@ namespace RcTireManager.Interfaces
         void Add(BaseDTO item);
         void Update(BaseDTO item);
         void Remove(BaseDTO item);
+        void SetItemsList(string selectedConfiguration);
     }
 }

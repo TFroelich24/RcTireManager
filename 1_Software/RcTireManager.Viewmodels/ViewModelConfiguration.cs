@@ -3,24 +3,36 @@ using RcTireManager.Data.DTO;
 using RcTireManager.Interfaces;
 using RcTireManager.Interfaces.Logic;
 using RcTireManager.Interfaces.Viewmodels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RcTireManager.Viewmodels
 {
     public class ViewModelConfiguration : PageModel, IViewModelConfiguration
     {
         ILogicConfiguration? _logic;
-        public ObservableCollection<CarDTO> Cars { get; set; }
         public CarDTO? SelectedCar { get; set; }
         public TireSetDTO? SelectedTireSet { get; set; }
+        public ObservableCollection<CarDTO> Cars { get; set; }
         public ObservableCollection<TireSetDTO> TireSets { get; set; }
-        public string SelectedConfiguration { get; set; }
+        public ObservableCollection<BaseItemDTO> ItemsList { get; set; }
 
+        private string selectedConfiguration;
+        public string SelectedConfiguration
+        {
+            get
+            {
+                return selectedConfiguration;
+            }
+            set
+            {
+                if (selectedConfiguration != value)
+                {
+                    selectedConfiguration = value;
+                    _logic?.SetItemsList(selectedConfiguration);                    
+                }
+            }
+        }
+        
         public ViewModelConfiguration()
         {
             SelectedConfiguration = string.Empty;
@@ -42,7 +54,7 @@ namespace RcTireManager.Viewmodels
         {
             throw new NotImplementedException();
         }
-        
+
         public void Update()
         {
             throw new NotImplementedException();
