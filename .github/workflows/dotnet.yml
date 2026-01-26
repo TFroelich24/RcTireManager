@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: .NET buildcheck
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
       project-path:
         description: 'Solution (.sln) or project path relative to repository root'
         required: false
-        default: '1_Software/RcTireManager.sln'
+        default: '1_Software/RcTireManager.slnx'
 
 jobs:
   build:
@@ -21,8 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      # Use the workflow_dispatch input if provided; otherwise fall back to the repo default
-      PROJECT_PATH: '1_Software/RcTireManager.sln'
+      PROJECT_PATH: '1_Software/RcTireManager.slnx'
 
     steps:
     - uses: actions/checkout@v4
@@ -32,8 +31,12 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    - name: Restore workload
+      run: dotnet workload restore --project "${PROJECT_PATH}"
+   
     - name: Restore dependencies
       run: dotnet restore "${PROJECT_PATH}"
+      
 
     - name: Build
       run: dotnet build --no-restore "${PROJECT_PATH}"
