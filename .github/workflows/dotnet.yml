@@ -32,7 +32,7 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Restore workload
-      run: dotnet workload restore 
+      run: dotnet workload restore --project "${PROJECT_PATH}"
    
     - name: Restore dependencies
       run: dotnet restore "${PROJECT_PATH}"
