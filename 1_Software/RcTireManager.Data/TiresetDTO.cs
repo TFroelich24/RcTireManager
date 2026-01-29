@@ -26,6 +26,11 @@ namespace RcTireManager.Data.DTO
         {
             get { return compound; }
             set { compound = value; }
-        }       
+        }
+
+        public  override string GetItemTypeName()
+        {
+            return Type;
+        }
     }
 }

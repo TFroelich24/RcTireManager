@@ -31,14 +31,21 @@ namespace RcTireManager.Data.DTO
 
         public enum CarTypeEnum
         {
-            CarType_None,
+            None,
             MonsterTruck,
             StadiumTruck,
             Touringcar,
-            Buggy_2WD,
-            Buggy_4WD,
+            Buggy_2WD_Stock,
+            Buggy_4WD_Stock,
+            Buggy_2WD_Modified,
+            Buggy_4WD_Modified,
             ShortCourse
-        }     
+        }
+
+        public override string GetItemTypeName()
+        {
+            return carType.ToString().Replace("_"," ");
+        }
     }
 }
 

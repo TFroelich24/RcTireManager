@@ -50,7 +50,7 @@ namespace RcTireManager.Logic
         public void SetItemsList(string selectedConfiguration)
         {
             _viewmodel.ItemsList = new();
-            if (_dataContext != null)
+            if (_dataContext != null && _dataContext?.TireSets != null && _dataContext.Cars != null)
             {
                 switch (selectedConfiguration)
                 {
@@ -61,7 +61,7 @@ namespace RcTireManager.Logic
                         break;
 
                     case nameof(_viewmodel.SelectedTireSet):
-                        foreach (TireSetDTO tireSet in _dataContext?.TireSets)
+                        foreach (TireSetDTO tireSet in _dataContext.TireSets)
                             _viewmodel.ItemsList.Add(tireSet);
 
                         break;

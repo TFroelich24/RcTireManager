@@ -22,19 +22,36 @@
             <div style="grid-row: 1">
                 <MudToggleGroup T="string" SelectedClass="@_viewModelConfiguration.SelectedConfiguration" @bind-Value="_viewModelConfiguration.SelectedConfiguration"
                                 SelectionMode="SelectionMode.ToggleSelection" Color="Color.Tertiary" CheckMark="true">
-                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedCar))" Text="Cars"/>
-                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedTireSet))" Text="Tire sets"/>
+                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedCar))" Text="Cars" />
+                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedTireSet))" Text="Tire sets" />
                 </MudToggleGroup>
+                <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="grid-row: 1" />
             </div>
+
             <div style="grid-row: 2">
                 <MudStack Row="false">
-                    @*  @foreach (var item in collection)
-        {
+                    @if (_viewModelConfiguration?.ItemsList != null)
+                    {
+                        @foreach (BaseItemDTO item in _viewModelConfiguration.ItemsList)
+                        {
 
-        } *@
-                    <MudPaper Class="pa-3">Item 1</MudPaper>
-                    <MudPaper Class="pa-3">Item 2</MudPaper>
-                    <MudPaper Class="pa-3">Item 3</MudPaper>
+                            <MudPaper Class="pa-3" Style="grid-column: 0 ; grid-row: 0">
+                                <div style="display: grid; grid-template-columns: 10vh 10vh 10vh; grid-template-rows: 5vh 5vh" >
+                                    <div style="grid-column: 1" Position="Position.Absolute.Top.Is0.Start.Is0.Translate.Middle">
+                                        @item.ID
+                                    </div>
+                                    <div style="grid-column: 2" Position="Position.Absolute.Top.Is0.Start.Is50.Translate.Middle">
+                                        >
+                                        @item.Name
+                                    </div>
+                                    <div style="grid-column: 3" Position="Position.Absolute.Top.Is0.Start.Is100.Translate.Middle">
+                                        >
+                                        @item.GetItemTypeName()
+                                    </div>
+                                </div>
+                            </MudPaper>
+                        }
+                    }
                 </MudStack>
             </div>
         </div>
