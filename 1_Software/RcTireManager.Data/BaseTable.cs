@@ -1,29 +1,23 @@
-﻿using RcTireManager.Data.DTO;
-using RcTireManager.Data.Interfaces;
+﻿using RcTireManager.Data.Interfaces;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Text.Json;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace RcTireManager.Data
 {
-    public class BaseTable<T>
+    public class BaseTable<T> :IBaseTable<T>
     {
         const string DATA_FOLDER = "Data";
 
         ObservableCollection<T>? _data;
         string _name;
         string _nameAndPath;
-        FileStream _file;
+        FileStream? _file;
 
         public BaseTable(string Name)
         {
             _name = $"{Name}" + ".json";
-            _nameAndPath = Path.Combine("Data\\", _name);
+            _nameAndPath = DATA_FOLDER+"\\"+ _name;
             readFromDataFile();
         }
 
@@ -108,8 +102,8 @@ namespace RcTireManager.Data
 
         private void createOrOpenDataFile()
         {
-            if (!Directory.Exists("Data"))
-                Directory.CreateDirectory("Data");
+            if (!Directory.Exists(DATA_FOLDER))
+                Directory.CreateDirectory(DATA_FOLDER);
             if (!File.Exists(_nameAndPath))
                 File.Create(_nameAndPath).Close();
             else
