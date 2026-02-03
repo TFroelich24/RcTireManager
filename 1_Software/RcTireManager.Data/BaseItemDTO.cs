@@ -34,5 +34,10 @@
         {
             return string.Empty;
         }
+
+        public double GetRuntimeInMinutes()
+        {
+            return runTime.TotalHours + runTime.Minutes;
+        }
     }
 }
