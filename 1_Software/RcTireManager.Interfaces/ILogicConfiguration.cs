@@ -10,9 +10,9 @@ namespace RcTireManager.Interfaces
 {
     public interface ILogicConfiguration :ILogicBase
     {
-        void Add(BaseDTO item);
-        void Update(BaseDTO item);
-        void Remove(BaseDTO item);
+        void Add(BaseItemDTO item);
+        void Update(BaseItemDTO item);
+        void Remove(BaseItemDTO item);
         void SetItemsList(string selectedConfiguration);
     }
 }

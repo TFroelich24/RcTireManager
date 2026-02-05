@@ -7,8 +7,8 @@ namespace RcTireManager.Interfaces.Viewmodels
     {
         string SelectedConfiguration { get; set; }
         ObservableCollection<BaseItemDTO> ItemsList { get; set; }
-        void Update();
-        void Remove();
+        void Update(BaseItemDTO item);
+        void Remove(BaseItemDTO item);
         void Add();
     }
 }

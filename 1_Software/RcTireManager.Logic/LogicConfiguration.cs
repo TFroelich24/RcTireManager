@@ -32,20 +32,18 @@ namespace RcTireManager.Logic
             _viewmodel.SelectedTireSet = null;
             _viewmodel.SelectedCar = null;
         }
-        public void Add(BaseDTO item)
+        public void Add(BaseItemDTO item)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(BaseDTO item)
+        public void Remove(BaseItemDTO item)
         {
-            throw new NotImplementedException();
+            BaseItemDTO? removeMe = _dataContext?.Cars?.Where(c => c.ID == item.ID).FirstOrDefault();
+            _dataContext?.Cars?.RemoveAt(removeMe.ID);
         }
 
-        public void Update(BaseDTO item)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public void SetItemsList(string selectedConfiguration)
         {
@@ -69,6 +67,11 @@ namespace RcTireManager.Logic
                         break;
                 }
             }
+        }
+
+        public void Update(BaseItemDTO item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

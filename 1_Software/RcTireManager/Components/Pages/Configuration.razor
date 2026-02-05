@@ -33,24 +33,33 @@
                     @if (_viewModelConfiguration?.ItemsList != null)
                     {
                         <MudPaper Class="pa-0">
-                            <MudButton Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Add" FullWidth="true" />
+                            <MudButton Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Add" FullWidth="true" onclick="@_viewModelConfiguration.Add" />
                         </MudPaper>
-
-
+                        int itemIndex = 0;
                         @foreach (BaseItemDTO item in _viewModelConfiguration.ItemsList)
                         {
                             <MudPaper Class="pa-4" Style="grid-column: 0 ; grid-row: 0">
-                                <div style="display: grid; grid-template-columns: 5vh 15vh 20vh; grid-template-rows: 5vh 5vh">
+                                <div style="display: grid; grid-template-columns: 5vh 15vh 20vh; grid-template-rows: 5vh 5vh 5vh">
                                     <div style="grid-column: 1" Position="Position.Absolute.Top.Is0.Start.Is0.Translate.Middle">@item.ID</div>
                                     <div style="grid-column: 2" Position="Position.Absolute.Top.Is0.Start.Is50.Translate.Middle">@item.Name</div>
                                     <div style="grid-column: 3" Position="Position.Absolute.Top.Is0.Start.Is100.Translate.Middle">@item.GetItemTypeName()</div>
                                 </div>
-                                <MudProgressLinear Color="Color.Secondary" Value="@item.GetRuntimeInMinutes()"
-                                                   Class="my-0" Size="Size.Large"
+                                <MudProgressLinear Color="Color.Secondary"
+                                                   Value="@item.GetRuntimeInMinutes()"
+                                                   Class="my-0"
+                                                   Size="Size.Large"
                                                    FullWidth="true"
                                                    Rounded="true" />
 
+                                <MudButton Style="margin-top: 10px"
+                                           Variant="Variant.Filled"
+                                           Color="Color.Error"
+                                           StartIcon="@Icons.Material.Filled.Delete"
+                                           FullWidth="false"
+                                           onclick="@(() =>_viewModelConfiguration.Remove(item))" />
                             </MudPaper>
+                            itemIndex++;
+
                         }
                     }
                 </MudStack>

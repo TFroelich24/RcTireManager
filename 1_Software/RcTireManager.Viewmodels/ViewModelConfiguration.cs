@@ -47,15 +47,17 @@ namespace RcTireManager.Viewmodels
         }
         public void Add()
         {
-            throw new NotImplementedException();
+            //_logic.Add();
         }
 
-        public void Remove()
+        public void Remove(BaseItemDTO item)
         {
-            throw new NotImplementedException();
+            _logic?.Remove(item);
+            _logic?.SetItemsList(selectedConfiguration);
+
         }
 
-        public void Update()
+        public void Update(BaseItemDTO item)
         {
             throw new NotImplementedException();
         }
