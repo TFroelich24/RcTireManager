@@ -44,10 +44,10 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <MauiIcon Include="Resources\AppIcon\rctiremanagerlogo.svg" ForegroundFile="Resources\AppIcon\rctiremanagerlogo.svg" Color="#00FFFFFF"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128"/>
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -58,6 +58,14 @@
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AndroidResource Remove="wwwroot\sample-data\**" />
+      <Compile Remove="wwwroot\sample-data\**" />
+      <Content Remove="wwwroot\sample-data\**" />
+      <EmbeddedResource Remove="wwwroot\sample-data\**" />
+      <None Remove="wwwroot\sample-data\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -89,7 +97,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\css\open-iconic\font\css\" />
     <Folder Include="wwwroot\css\open-iconic\font\fonts\" />
-    <Folder Include="wwwroot\sample-data\" />
   </ItemGroup>
 
 </Project>

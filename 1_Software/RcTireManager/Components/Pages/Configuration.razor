@@ -35,9 +35,10 @@
                         <MudPaper Class="pa-0">
                             <MudButton Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Add" FullWidth="true" />
                         </MudPaper>
+
+
                         @foreach (BaseItemDTO item in _viewModelConfiguration.ItemsList)
                         {
-
                             <MudPaper Class="pa-4" Style="grid-column: 0 ; grid-row: 0">
                                 <div style="display: grid; grid-template-columns: 5vh 15vh 20vh; grid-template-rows: 5vh 5vh">
                                     <div style="grid-column: 1" Position="Position.Absolute.Top.Is0.Start.Is0.Translate.Middle">@item.ID</div>
@@ -48,6 +49,7 @@
                                                    Class="my-0" Size="Size.Large"
                                                    FullWidth="true"
                                                    Rounded="true" />
+
                             </MudPaper>
                         }
                     }
