@@ -1,11 +1,12 @@
-﻿using RcTireManager.Data.Interfaces;
+﻿using RcTireManager.Data.DTO;
+using RcTireManager.Data.Interfaces;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 
 namespace RcTireManager.Data
 {
-    public class BaseTable<T> :IBaseTable<T>
+    public class BaseTable<T> :IBaseTable<T> where T : BaseDTO      
     {
         const string DATA_FOLDER = "Data";
 
@@ -96,6 +97,10 @@ namespace RcTireManager.Data
             {
                 _data = (ObservableCollection<T>)JsonSerializer.Deserialize<ObservableCollection<T>>(_file);
                 _file.Close();
+
+                if (_data != null)
+                    _data = new ObservableCollection<T>(_data.OrderBy(x => x.ID));
+
                 return _data;
             }
         }

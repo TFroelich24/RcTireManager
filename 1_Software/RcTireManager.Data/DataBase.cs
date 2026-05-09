@@ -1,4 +1,5 @@
-﻿using RcTireManager.Data.Interfaces;
+﻿using RcTireManager.Data.DTO;
+using RcTireManager.Data.Interfaces;
 using System.Runtime.CompilerServices;
 
 namespace RcTireManager.Data
@@ -6,7 +7,7 @@ namespace RcTireManager.Data
     public class DataBase
     {
         private readonly Dictionary<string, object> _tables = new();
-        public IBaseTable<T> GetTable<T>([CallerMemberName] string memberName = "")
+        public IBaseTable<T> GetTable<T>([CallerMemberName] string memberName = "") where T : BaseDTO
         {
             var key = memberName ?? typeof(T).Name;
 

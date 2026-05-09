@@ -1,9 +1,10 @@
 
+using RcTireManager.Data.DTO;
 using System.Collections.ObjectModel;
 
 namespace RcTireManager.Data.Interfaces
 {
-    public interface IBaseTable<T>
+    public interface IBaseTable<T> where T : BaseDTO
     {
         ObservableCollection<T> GetAll();
         void UpdateTable(ObservableCollection<T>? data);

@@ -2,6 +2,7 @@
 using RcTireManager.Data.DTO;
 using RcTireManager.Interfaces;
 using RcTireManager.Interfaces.Viewmodels;
+using System.Collections.ObjectModel;
 
 namespace RcTireManager.Logic
 {
@@ -32,18 +33,53 @@ namespace RcTireManager.Logic
             _viewmodel.SelectedTireSet = null;
             _viewmodel.SelectedCar = null;
         }
-        public void Add(BaseItemDTO item)
+        public void Add(string selectedConfiguration)
         {
-            throw new NotImplementedException();
+            if (_dataContext != null)
+            {
+                switch (selectedConfiguration)
+                {
+                    case nameof(_viewmodel.SelectedCar):
+                        CarDTO newCar = new CarDTO() { Name = "New Car", IsActive = true, ID = _dataContext.Cars.Last().ID + 1 };
+                        ObservableCollection<CarDTO>? cars = _dataContext.Cars;
+                        cars.Add(newCar);
+                        _dataContext.Cars = cars;
+                        break;
+
+                    case nameof(_viewmodel.SelectedTireSet):
+                        TireSetDTO newTireSet = new TireSetDTO() { Name = "New Tire Set", IsActive = true, ID = _dataContext.TireSets.Last().ID + 1 };
+                        ObservableCollection<TireSetDTO>? tireSets = _dataContext.TireSets;
+                        tireSets.Add(newTireSet);
+                        _dataContext.TireSets = tireSets;
+                        break;
+
+                }
+            }
         }
 
-        public void Remove(BaseItemDTO item)
+        public void SetInactive(BaseItemDTO item)
         {
-            BaseItemDTO? removeMe = _dataContext?.Cars?.Where(c => c.ID == item.ID).FirstOrDefault();
-            _dataContext?.Cars?.RemoveAt(removeMe.ID);
+            if (_dataContext != null)
+            {
+                if (item.GetType() == typeof(CarDTO))
+                {
+                    ObservableCollection<CarDTO> cars = _dataContext.Cars;
+                    cars.Where(car => car.ID == item.ID).FirstOrDefault().IsActive = false;
+                    _dataContext.Cars = cars;
+                }
+                else if (item.GetType() == typeof(TireSetDTO))
+                {
+                    ObservableCollection<TireSetDTO> tireSets = _dataContext.TireSets;
+                    tireSets.Where(tireSet => tireSet.ID == item.ID).FirstOrDefault().IsActive = false;
+                    _dataContext.TireSets = tireSets;
+                }
+            }
         }
 
-      
+        public void SetActive(BaseItemDTO item)
+        {
+
+        }
 
         public void SetItemsList(string selectedConfiguration)
         {

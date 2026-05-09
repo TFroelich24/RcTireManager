@@ -36,7 +36,7 @@
                     @foreach (TireSetDTO set in _viewModelHome.TireSets)
                         if (_viewModelHome.SelectedCar != null)
                             foreach (int setID in _viewModelHome.SelectedCar.TireSetsIDs)
-                                if (set.ID == setID)
+                                if (set.ID == setID && set.IsActive)
                                 {
                                     <MudSelectItem Value="set">@set.ID - @set.Name - @set.Compound</MudSelectItem>
                                 }

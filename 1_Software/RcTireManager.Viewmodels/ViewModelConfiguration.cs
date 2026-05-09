@@ -28,11 +28,11 @@ namespace RcTireManager.Viewmodels
                 if (selectedConfiguration != value)
                 {
                     selectedConfiguration = value;
-                    _logic?.SetItemsList(selectedConfiguration);                    
+                    _logic?.SetItemsList(selectedConfiguration);
                 }
             }
         }
-        
+
         public ViewModelConfiguration()
         {
             SelectedConfiguration = string.Empty;
@@ -41,23 +41,31 @@ namespace RcTireManager.Viewmodels
             SelectedCar = new();
             SelectedTireSet = new();
         }
+        
         public void SetReferenceToBusinessLogic(ILogicBase logic)
         {
             _logic = (ILogicConfiguration)logic;
         }
+        
         public void Add()
         {
-            //_logic.Add();
-        }
-
-        public void Remove(BaseItemDTO item)
-        {
-            _logic?.Remove(item);
+            _logic?.Add(selectedConfiguration);
             _logic?.SetItemsList(selectedConfiguration);
 
         }
 
+        public void SetInactive(BaseItemDTO item)
+        {
+            _logic?.SetInactive(item);
+            _logic?.SetItemsList(selectedConfiguration);
+        }
+
         public void Update(BaseItemDTO item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive(BaseItemDTO item)
         {
             throw new NotImplementedException();
         }

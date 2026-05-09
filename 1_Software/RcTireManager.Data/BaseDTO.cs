@@ -8,6 +8,8 @@
         {
             get { return id; }
             set { id = value; }
-        }     
+        }
+
+        public bool IsActive { get; set; }
     }
 }

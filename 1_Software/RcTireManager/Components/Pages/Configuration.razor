@@ -54,9 +54,9 @@
                                 <MudButton Style="margin-top: 10px"
                                            Variant="Variant.Filled"
                                            Color="Color.Error"
-                                           StartIcon="@Icons.Material.Filled.Delete"
+                                           StartIcon="@Icons.Material.Filled.RemoveCircle"
                                            FullWidth="false"
-                                           onclick="@(() =>_viewModelConfiguration.Remove(item))" />
+                                           onclick="@(() =>_viewModelConfiguration.SetInactive(item))" />
                             </MudPaper>
                             itemIndex++;
 
