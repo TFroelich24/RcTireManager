@@ -39,8 +39,8 @@
                         int itemIndex = 0;
                         @foreach (BaseItemDTO item in _viewModelConfiguration.ItemsList)
                         {
-                            <MudPaper Class="pa-4" Style="grid-column: 0 ; grid-row: 0; cursor: pointer;" @ondblclick="@(() => OpenEditDialog(item))">
-                                <div style="display: grid; grid-template-columns: 5vh 15vh 20vh 15vh; grid-template-rows: 5vh 5vh 5vh">
+                            <MudPaper Class="pa-4 item-card fade-in" Style="grid-column: 0 ; grid-row: 0; cursor: pointer; animation-delay: @(itemIndex * 0.05)s;" @ondblclick="@(() => OpenEditDialog(item))">
+                                <div class="item-content" style="display: grid; grid-template-columns: 5vh 15vh 15vh 25vh 15vh ; grid-template-rows: 5vh 5vh ">
                                     <div style="grid-column: 1" Position="Position.Absolute.Top.Is0.Start.Is0.Translate.Middle">@item.ID</div>
                                     <div style="grid-column: 2" Position="Position.Absolute.Top.Is0.Start.Is50.Translate.Middle">@item.Name</div>
                                     <div style="grid-column: 3" Position="Position.Absolute.Top.Is0.Start.Is100.Translate.Middle">@item.GetItemTypeName()</div>
@@ -51,10 +51,19 @@
                                                    Color="Color.Success"
                                                    Label="@(item.IsActive ? "Aktiv" : "Inaktiv")" />
                                     </div>
+                                    <div style="grid-column: 5">
+                                        <MudIconButton Icon="@Icons.Material.Filled.Edit"
+                                                       Color="Color.Primary"
+                                                       Size="Size.Medium"
+                                                       OnClick="@(() => OpenEditDialog(item))"
+                                                       aria-label="Bearbeiten" />
+                                    </div>
+
                                 </div>
+
                                 <MudProgressLinear Color="Color.Secondary"
                                                    Value="@item.GetRuntimeInMinutes()"
-                                                   Class="my-0"
+                                                   Class="my-0 progress-transition"
                                                    Size="Size.Large"
                                                    FullWidth="true"
                                                    Rounded="true" />
@@ -70,4 +79,4 @@
         </div>
     </MudPaper>
 </div>
-<MudGrid/>
+<MudGrid />

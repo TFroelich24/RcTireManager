@@ -20,7 +20,7 @@ namespace RcTireManager.Components.Pages
                 FullWidth = true
             };
 
-            IDialogReference dialog = await DialogService.ShowAsync<EditItemDialog>("Item bearbeiten", parameters, options);
+            IDialogReference dialog = await DialogService.ShowAsync<EditItemDialog>("Bearbeiten", parameters, options);
             DialogResult? result = await dialog.Result;
 
             if (!result.Canceled && result.Data is BaseItemDTO updatedItem)

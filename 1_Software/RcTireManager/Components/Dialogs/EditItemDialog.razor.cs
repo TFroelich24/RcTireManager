@@ -7,24 +7,19 @@ namespace RcTireManager.Components.Dialogs
     public partial class EditItemDialog
     {
         [CascadingParameter]
-        MudDialog MudDialogInstance { get; set; }
-        DialogResult _result;
-
+        private IMudDialogInstance MudDialog { get; set; } = null!;
 
         [Parameter]
         public BaseItemDTO? Item { get; set; }
 
-        public EditItemDialog()
+        private void Cancel()
         {
+            MudDialog.Cancel();
         }
 
-        private void Cancel(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
+        private void Submit()
         {
-            _result = DialogResult.Cancel();            
-        }
-        private void Submit(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
-        {
-            //_result = DialogResult.Ok();
+            MudDialog.Close(DialogResult.Ok(Item));
         }
     }
-}   
+}
