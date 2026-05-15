@@ -26,6 +26,7 @@ namespace RcTireManager
             builder.Services.AddSingleton<ILogicHome, LogicHome>();
             builder.Services.AddSingleton<IViewModelConfiguration, ViewModelConfiguration>();
             builder.Services.AddSingleton<ILogicConfiguration, LogicConfiguration>();
+            builder.Services.AddTransient<IViewModelEditItemDialog, ViewModelEditItemDialog>();
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
             builder.Logging.AddDebug();
