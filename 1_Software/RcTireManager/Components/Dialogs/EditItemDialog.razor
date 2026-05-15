@@ -1,0 +1,32 @@
+@using RcTireManager.Data.DTO
+@using MudBlazor
+
+<MudDialog>
+    <DialogContent>
+        @if (Item != null)
+        {
+            <MudTextField @bind-Value="Item.Name" Label="Name" Variant="Variant.Outlined" />
+
+            @if (Item is TireSetDTO tireSet)
+            {
+                <MudTextField @bind-Value="tireSet.Type" Label="Type" Variant="Variant.Outlined" Class="mt-3" />
+                <MudTextField @bind-Value="tireSet.Compound" Label="Compound" Variant="Variant.Outlined" Class="mt-3" />
+            }
+            else if (Item is CarDTO car)
+            {
+                <MudSelect @bind-Value="car.CarType" Label="Car Type" Variant="Variant.Outlined" Class="mt-3">
+                    @foreach (var carType in Enum.GetValues<CarDTO.CarTypeEnum>())
+                    {
+                        <MudSelectItem Value="@carType">@carType.ToString().Replace("_", " ")</MudSelectItem>
+                    }
+                </MudSelect>
+            }
+        }
+    </DialogContent>    
+    <DialogActions>
+        <MudButton OnClick="Cancel">Abbrechen</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Speichern</MudButton>
+    </DialogActions>
+</MudDialog>
+
+

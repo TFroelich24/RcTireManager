@@ -1,30 +1,33 @@
+using MudBlazor;
+using RcTireManager.Components.Dialogs;
+using RcTireManager.Data.DTO;
+
 namespace RcTireManager.Components.Pages
 {
     public partial class Configuration
     {
-        private WeatherForecast[]? forecasts;
-
-        protected override async Task OnInitializedAsync()
+        private async Task OpenEditDialog(BaseItemDTO item)
         {
-            // Simulate asynchronous loading to demonstrate a loading indicator
-            await Task.Delay(1000);
-
-            var startDate = DateOnly.FromDateTime(DateTime.Now);
-            var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-            forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            DialogParameters parameters = new DialogParameters<EditItemDialog>
             {
-                Date = startDate.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = summaries[Random.Shared.Next(summaries.Length)]
-            }).ToArray();
+                { x => x.Item, item }
+            };
+
+            DialogOptions options = new DialogOptions
+            {
+                CloseOnEscapeKey = true,
+                MaxWidth = MaxWidth.Small,
+                FullWidth = true
+            };
+
+            IDialogReference dialog = await DialogService.ShowAsync<EditItemDialog>("Item bearbeiten", parameters, options);
+            DialogResult? result = await dialog.Result;
+
+            if (!result.Canceled && result.Data is BaseItemDTO updatedItem)
+            {
+                _viewModelConfiguration.Update(updatedItem);
+            }
         }
 
-        private class WeatherForecast
-        {
-            public DateOnly Date { get; set; }
-            public int TemperatureC { get; set; }
-            public string? Summary { get; set; }
-            public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-        }
     }
 }

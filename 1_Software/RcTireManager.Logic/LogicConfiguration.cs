@@ -121,7 +121,31 @@ namespace RcTireManager.Logic
 
         public void Update(BaseItemDTO item)
         {
-            throw new NotImplementedException();
+            if (_dataContext != null)
+            {
+                if (item.GetType() == typeof(CarDTO) && item is CarDTO carToUpdate)
+                {
+                    ObservableCollection<CarDTO> cars = _dataContext.Cars;
+                    var existingCar = cars.Where(car => car.ID == item.ID).FirstOrDefault();
+                    if (existingCar != null)
+                    {
+                        int index = cars.IndexOf(existingCar);
+                        cars[index] = carToUpdate;
+                        _dataContext.Cars = cars;
+                    }
+                }
+                else if (item.GetType() == typeof(TireSetDTO) && item is TireSetDTO tireSetToUpdate)
+                {
+                    ObservableCollection<TireSetDTO> tireSets = _dataContext.TireSets;
+                    var existingTireSet = tireSets.Where(tireSet => tireSet.ID == item.ID).FirstOrDefault();
+                    if (existingTireSet != null)
+                    {
+                        int index = tireSets.IndexOf(existingTireSet);
+                        tireSets[index] = tireSetToUpdate;
+                        _dataContext.TireSets = tireSets;
+                    }
+                }
+            }
         }
     }
 }

@@ -68,7 +68,8 @@ namespace RcTireManager.Viewmodels
 
         public void Update(BaseItemDTO item)
         {
-            throw new NotImplementedException();
+            _logic?.Update(item);
+            _logic?.SetItemsList(selectedConfiguration);
         }
 
         public void SetActive(BaseItemDTO item)
