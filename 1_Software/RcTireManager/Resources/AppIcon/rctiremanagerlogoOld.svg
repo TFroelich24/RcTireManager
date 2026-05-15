@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="920mm"
+   height="920mm"
+   viewBox="0 0 920 920"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="rctiremanagerlogo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.24705882"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.12708801"
+     inkscape:cx="-35.408533"
+     inkscape:cy="2309.4232"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="3832"
+     inkscape:window-y="670"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="path2"
+       sodipodi:type="arc"
+       sodipodi:cx="460"
+       sodipodi:cy="459.67493"
+       sodipodi:rx="29.442379"
+       sodipodi:ry="18.401487"
+       sodipodi:start="0"
+       sodipodi:end="4.4457734"
+       sodipodi:arc-type="slice"
+       d="m 489.44238,459.67493 a 29.442379,18.401487 0 0 1 -26.82922,18.32886 29.442379,18.401487 0 0 1 -31.59168,-15.07531 29.442379,18.401487 0 0 1 21.22139,-21.00488 L 460,459.67493 Z" />
+    <ellipse
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="path3"
+       cx="460"
+       cy="460"
+       rx="11.224907"
+       ry="10.488847" />
+    <circle
+       style="fill:#000000;stroke-width:0.264583"
+       id="path4"
+       cx="460"
+       cy="460"
+       r="460" />
+    <circle
+       style="fill:#eb2427;fill-opacity:1;stroke-width:0.264583"
+       id="path5"
+       cx="460"
+       cy="460"
+       r="380" />
+    <circle
+       style="fill:#000000;stroke-width:0.247232"
+       id="path5-8"
+       cx="460"
+       cy="460"
+       r="320" />
+    <circle
+       style="fill:#ee792a;fill-opacity:1;stroke-width:0.247232"
+       id="path5-8-1"
+       cx="460"
+       cy="460"
+       r="310" />
+    <circle
+       style="fill:#000000;stroke-width:0.247232"
+       id="path5-8-1-2"
+       cx="460"
+       cy="460"
+       r="250" />
+    <circle
+       style="fill:#fdee19;fill-opacity:1;stroke-width:0.247232"
+       id="path5-8-1-2-2"
+       cx="460"
+       cy="460"
+       r="240" />
+    <circle
+       style="fill:#000000;stroke-width:0.247232"
+       id="path5-8-1-2-2-6"
+       cx="460"
+       cy="460"
+       r="180" />
+    <circle
+       style="fill:#ececec;stroke-width:0.247232"
+       id="path5-8-1-2-2-6-1"
+       cx="460"
+       cy="460"
+       r="170" />
+  </g>
+</svg>

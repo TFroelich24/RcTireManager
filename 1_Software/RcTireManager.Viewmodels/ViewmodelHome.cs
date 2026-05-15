@@ -25,7 +25,7 @@ namespace RcTireManager.Viewmodels
             TireSets = new ObservableCollection<TireSetDTO>();            
         }
          
-        public void SetReferenceToBusinessLogic(ILogicBase logic)
+        public void SetReferenceToBusinessLogicAndInitialize(ILogicBase logic)
         {
             _logic = (ILogicHome)logic;
         }

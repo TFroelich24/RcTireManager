@@ -4,6 +4,6 @@ namespace RcTireManager.Interfaces.Viewmodels
 {
     public interface IViewModelBase
     {
-        void SetReferenceToBusinessLogic(ILogicBase logic);        
+        void SetReferenceToBusinessLogicAndInitialize(ILogicBase logic);        
     }
 }

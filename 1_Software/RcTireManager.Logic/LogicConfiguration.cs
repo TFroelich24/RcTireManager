@@ -78,7 +78,21 @@ namespace RcTireManager.Logic
 
         public void SetActive(BaseItemDTO item)
         {
-
+            if (_dataContext != null)
+            {
+                if (item.GetType() == typeof(CarDTO))
+                {
+                    ObservableCollection<CarDTO> cars = _dataContext.Cars;
+                    cars.Where(car => car.ID == item.ID).FirstOrDefault().IsActive = true;
+                    _dataContext.Cars = cars;
+                }
+                else if (item.GetType() == typeof(TireSetDTO))
+                {
+                    ObservableCollection<TireSetDTO> tireSets = _dataContext.TireSets;
+                    tireSets.Where(tireSet => tireSet.ID == item.ID).FirstOrDefault().IsActive = true;
+                    _dataContext.TireSets = tireSets;
+                }
+            }
         }
 
         public void SetItemsList(string selectedConfiguration)
@@ -89,13 +103,13 @@ namespace RcTireManager.Logic
                 switch (selectedConfiguration)
                 {
                     case nameof(_viewmodel.SelectedCar):
-                        foreach (CarDTO car in _dataContext.Cars)
+                        foreach (CarDTO car in _dataContext.Cars.OrderByDescending(c => c.IsActive))
                             _viewmodel.ItemsList.Add(car);
-
+    
                         break;
 
                     case nameof(_viewmodel.SelectedTireSet):
-                        foreach (TireSetDTO tireSet in _dataContext.TireSets)
+                        foreach (TireSetDTO tireSet in _dataContext.TireSets.OrderByDescending(t => t.IsActive))
                             _viewmodel.ItemsList.Add(tireSet);
 
                         break;

@@ -22,8 +22,8 @@
             <div style="grid-row: 1">
                 <MudToggleGroup T="string" SelectedClass="@_viewModelConfiguration.SelectedConfiguration" @bind-Value="_viewModelConfiguration.SelectedConfiguration"
                                 SelectionMode="SelectionMode.ToggleSelection" Color="Color.Tertiary" CheckMark="true">
-                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedCar))" Text="Cars" />
                     <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedTireSet))" Text="Tire sets" />
+                    <MudToggleItem Value="@(nameof(_viewModelConfiguration.SelectedCar))" Text="Cars" />
                 </MudToggleGroup>
                 <MudDivider DividerType="DividerType.Middle" Class="my-6" Style="grid-row: 1" />
             </div>
@@ -39,10 +39,17 @@
                         @foreach (BaseItemDTO item in _viewModelConfiguration.ItemsList)
                         {
                             <MudPaper Class="pa-4" Style="grid-column: 0 ; grid-row: 0">
-                                <div style="display: grid; grid-template-columns: 5vh 15vh 20vh; grid-template-rows: 5vh 5vh 5vh">
+                                <div style="display: grid; grid-template-columns: 5vh 15vh 20vh 15vh; grid-template-rows: 5vh 5vh 5vh">
                                     <div style="grid-column: 1" Position="Position.Absolute.Top.Is0.Start.Is0.Translate.Middle">@item.ID</div>
                                     <div style="grid-column: 2" Position="Position.Absolute.Top.Is0.Start.Is50.Translate.Middle">@item.Name</div>
                                     <div style="grid-column: 3" Position="Position.Absolute.Top.Is0.Start.Is100.Translate.Middle">@item.GetItemTypeName()</div>
+                                    <div style="grid-column: 4">
+                                        <MudSwitch T="bool"
+                                                   Value="@item.IsActive"
+                                                   ValueChanged="@((bool value) => { if (value) _viewModelConfiguration.SetActive(item); else _viewModelConfiguration.SetInactive(item); })"
+                                                   Color="Color.Success"
+                                                   Label="@(item.IsActive ? "Aktiv" : "Inaktiv")" />
+                                    </div>
                                 </div>
                                 <MudProgressLinear Color="Color.Secondary"
                                                    Value="@item.GetRuntimeInMinutes()"
@@ -51,12 +58,7 @@
                                                    FullWidth="true"
                                                    Rounded="true" />
 
-                                <MudButton Style="margin-top: 10px"
-                                           Variant="Variant.Filled"
-                                           Color="Color.Error"
-                                           StartIcon="@Icons.Material.Filled.RemoveCircle"
-                                           FullWidth="false"
-                                           onclick="@(() =>_viewModelConfiguration.SetInactive(item))" />
+                                
                             </MudPaper>
                             itemIndex++;
 

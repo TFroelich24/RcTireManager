@@ -38,8 +38,8 @@ namespace RcTireManager
 
         static void SetReferenceToLogics(MauiApp app)
         {
-            app.Services.GetRequiredService<IViewModelHome>().SetReferenceToBusinessLogic(app.Services.GetRequiredService<ILogicHome>());
-            app.Services.GetRequiredService<IViewModelConfiguration>().SetReferenceToBusinessLogic(app.Services.GetRequiredService<ILogicConfiguration>());
+            app.Services.GetRequiredService<IViewModelHome>().SetReferenceToBusinessLogicAndInitialize(app.Services.GetRequiredService<ILogicHome>());
+            app.Services.GetRequiredService<IViewModelConfiguration>().SetReferenceToBusinessLogicAndInitialize(app.Services.GetRequiredService<ILogicConfiguration>());
         }
     }
 }
